@@ -1,228 +1,345 @@
-'use client';
-
-import React, { useState } from 'react';
 import Link from 'next/link';
-import Logo from '@/components/Logo';
 
-const INSTALL_OPTIONS = [
+function Logo({ size = 40 }: { size?: number }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 256 256"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M 108 0 C 119.046 0 128 8.954 128 20 C 128 8.954 136.954 0 148 0 L 206 0 C 233.614 0 256 22.386 256 50 L 256 108 C 256 119.046 247.046 128 236 128 C 247.046 128 256 136.954 256 148 L 256 206 C 256 233.614 233.614 256 206 256 L 148 256 C 136.954 256 128 247.046 128 236 C 128 247.046 119.046 256 108 256 L 50 256 C 22.386 256 0 233.614 0 206 L 0 148 C 0 136.954 8.954 128 20 128 C 8.954 128 0 119.046 0 108 L 0 50 C 0 22.386 22.386 0 50 0 Z M 128 100 C 112.536 100 100 112.536 100 128 C 100 143.464 112.536 156 128 156 C 143.464 156 156 143.464 156 128 C 156 112.536 143.464 100 128 100 Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+const installMethods = [
+  { label: 'Homebrew', cmd: 'brew install utkarsh125/tap/morrow' },
+  { label: 'Cargo', cmd: 'cargo install morrow' },
+  { label: 'curl', cmd: 'curl -fsSL https://raw.githubusercontent.com/utkarsh125/morrow/main/install.sh | bash' },
+];
+
+const features = [
   {
-    id: 'brew',
-    label: 'Homebrew',
-    cmd: 'brew install utkarsh125/tap/morrow',
+    title: 'Fully Local',
+    body: 'No accounts, telemetry, or cloud. Conversations persist in a local SQLite database at ~/.local/share/morrow/.',
   },
   {
-    id: 'curl',
-    label: 'curl script',
-    cmd: 'curl -fsSL https://raw.githubusercontent.com/utkarsh125/morrow/main/install.sh | bash',
+    title: '65+ Kitty Themes',
+    body: 'Switch between 65+ curated terminal color themes live with Ctrl-T or /theme. Palette previews included.',
   },
   {
-    id: 'cargo',
-    label: 'cargo crates.io',
-    cmd: 'cargo install morrow',
-  },
-  {
-    id: 'git',
-    label: 'cargo git',
-    cmd: 'cargo install --git https://github.com/utkarsh125/morrow',
-  },
-  {
-    id: 'source',
-    label: 'Source',
-    cmd: 'git clone https://github.com/utkarsh125/morrow.git && cd morrow && cargo install --path .',
+    title: 'Keyboard First',
+    body: 'Every action is a single-chord shortcut. Slash commands, session browser, model picker — all keyboard-driven.',
   },
 ];
 
 export default function HomePage() {
-  const [activeTab, setActiveTab] = useState('brew');
-  const [copied, setCopied] = useState(false);
-
-  const activeCmd = INSTALL_OPTIONS.find((opt) => opt.id === activeTab)?.cmd || INSTALL_OPTIONS[0].cmd;
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(activeCmd);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-fd-background text-fd-foreground font-sans selection:bg-[#504945] selection:text-[#fbf1c7] transition-colors duration-150">
-      
-      {/* Top Minimalist Header */}
-      <header className="border-b border-fd-border bg-fd-background/90 backdrop-blur-sm sticky top-0 z-40">
-        <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <Logo className="w-5 h-5 text-fd-primary flex-shrink-0" />
-            <span className="font-bold text-lg text-fd-foreground tracking-tight">Morrow</span>
-            <span className="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-fd-muted text-fd-primary border border-fd-border">
-              v0.1.0
-            </span>
-          </div>
-
-          <nav className="flex items-center gap-6 text-xs font-mono text-fd-muted-foreground">
-            <Link href="/docs" className="hover:text-fd-foreground transition-colors">
-              Docs
-            </Link>
-            <Link href="/docs/themes" className="hover:text-fd-foreground transition-colors">
-              Themes
-            </Link>
-            <Link href="/docs/commands" className="hover:text-fd-foreground transition-colors">
-              Commands
-            </Link>
-            <a
-              href="https://github.com/utkarsh125/morrow"
-              target="_blank"
-              rel="noreferrer"
-              className="text-fd-foreground hover:text-fd-primary transition-colors underline underline-offset-4"
-            >
-              GitHub
-            </a>
-          </nav>
-        </div>
-      </header>
-
-      {/* Main Content Area */}
-      <main className="max-w-4xl mx-auto px-6 py-16 sm:py-24 flex-1 flex flex-col justify-center">
-        
-        {/* Emblem & Tagline Badge */}
-        <div className="mb-6 flex items-center gap-3">
-          <Logo className="w-10 h-10 text-fd-primary flex-shrink-0" />
-          <div className="font-mono text-xs text-fd-muted-foreground tracking-wide">
-            <span className="text-fd-primary font-bold">01</span> // LOCAL AI WORKSPACE // RUST + RATATUI
-          </div>
-        </div>
-
-        {/* Headline */}
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-fd-foreground tracking-tight leading-[1.15] mb-6">
-          Your private AI workspace, <br className="hidden sm:inline" />
-          <span className="text-fd-primary">always on your machine.</span>
-        </h1>
-
-        {/* Subtitle */}
-        <p className="text-base sm:text-lg text-fd-foreground/85 leading-relaxed max-w-2xl mb-10 font-normal">
-          Morrow is a calm, keyboard-first terminal workspace for chatting with local language models through <strong>Ollama</strong>. Conversations stay in a local SQLite database with zero telemetry, zero cloud APIs, and 65+ curated Kitty terminal color themes.
-        </p>
-
-        {/* Installation Box */}
-        <div className="w-full max-w-2xl bg-fd-card border border-fd-border rounded-lg overflow-hidden mb-10 shadow-lg">
-          
-          {/* Tabs */}
-          <div className="flex items-center overflow-x-auto border-b border-fd-border bg-fd-background px-2 pt-1.5">
-            {INSTALL_OPTIONS.map((opt) => (
-              <button
-                key={opt.id}
-                onClick={() => setActiveTab(opt.id)}
-                className={`px-3 py-1.5 text-xs font-mono rounded-t transition-all whitespace-nowrap cursor-pointer ${
-                  activeTab === opt.id
-                    ? 'bg-fd-card text-fd-foreground font-semibold border-t border-x border-fd-border -mb-px'
-                    : 'text-fd-muted-foreground hover:text-fd-foreground'
-                }`}
-              >
-                {opt.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Snippet Row */}
-          <div className="p-4 flex items-center justify-between gap-4">
-            <div className="flex items-center gap-2 font-mono text-xs sm:text-sm text-fd-foreground overflow-x-auto select-all">
-              <span className="text-fd-primary select-none">$</span>
-              <span className="whitespace-nowrap">{activeCmd}</span>
-            </div>
-
-            <button
-              onClick={handleCopy}
-              className="flex-shrink-0 px-3 py-1 text-xs font-mono rounded bg-fd-secondary hover:bg-fd-accent text-fd-foreground border border-fd-border transition-colors cursor-pointer"
-            >
-              {copied ? 'Copied' : 'Copy'}
-            </button>
-          </div>
-
-        </div>
-
-        {/* CTA Navigation Links */}
-        <div className="flex flex-wrap items-center gap-4 text-xs font-mono">
+    <main
+      style={{
+        minHeight: '100dvh',
+        background: 'var(--color-fd-background)',
+        color: 'var(--color-fd-foreground)',
+        fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      {/* ── NAV ─────────────────────────────────────── */}
+      <nav
+        style={{
+          borderBottom: '1px solid var(--color-fd-border)',
+          padding: '0 clamp(1rem, 5vw, 3rem)',
+          height: '3.5rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          position: 'sticky',
+          top: 0,
+          zIndex: 40,
+          background: 'var(--color-fd-background)',
+        }}
+      >
+        <span style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 700 }}>
+          <span style={{ color: 'var(--color-fd-primary)', display: 'flex' }}>
+            <Logo size={20} />
+          </span>
+          Morrow
+          <span
+            style={{
+              fontSize: '0.6rem',
+              fontFamily: "'JetBrains Mono', monospace",
+              fontWeight: 600,
+              padding: '0.1rem 0.35rem',
+              borderRadius: '0.25rem',
+              background: 'var(--color-fd-muted)',
+              color: 'var(--color-fd-primary)',
+              border: '1px solid var(--color-fd-border)',
+              letterSpacing: '0.04em',
+              textTransform: 'uppercase',
+            }}
+          >
+            v0.1.0
+          </span>
+        </span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
           <Link
             href="/docs"
-            className="px-4 py-2 rounded bg-fd-primary text-fd-primary-foreground font-bold hover:opacity-90 transition-opacity"
+            style={{
+              fontSize: '0.875rem',
+              color: 'var(--color-fd-muted-foreground)',
+              textDecoration: 'none',
+              fontWeight: 500,
+            }}
           >
-            Read Documentation →
+            Docs
           </Link>
           <Link
-            href="/docs/themes"
-            className="px-4 py-2 rounded bg-fd-card text-fd-foreground hover:bg-fd-secondary border border-fd-border transition-colors"
+            href="https://github.com/utkarsh125/morrow"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontSize: '0.875rem',
+              color: 'var(--color-fd-muted-foreground)',
+              textDecoration: 'none',
+              fontWeight: 500,
+            }}
           >
-            Explore 65+ Themes →
+            GitHub ↗
+          </Link>
+        </div>
+      </nav>
+
+      {/* ── HERO ────────────────────────────────────── */}
+      <section
+        style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
+          padding: 'clamp(4rem, 10vw, 7rem) clamp(1rem, 5vw, 3rem) clamp(3rem, 8vw, 5rem)',
+          gap: '2rem',
+        }}
+      >
+        {/* Logo */}
+        <span style={{ color: 'var(--color-fd-primary)' }}>
+          <Logo size={52} />
+        </span>
+
+        {/* Headline */}
+        <div style={{ maxWidth: '600px', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+          <h1
+            style={{
+              fontSize: 'clamp(1.875rem, 5vw, 3rem)',
+              fontWeight: 700,
+              lineHeight: 1.15,
+              letterSpacing: '-0.02em',
+              color: 'var(--color-fd-foreground)',
+              margin: 0,
+            }}
+          >
+            Your private AI workspace,<br />always on your machine.
+          </h1>
+          <p
+            style={{
+              fontSize: 'clamp(0.9375rem, 2.5vw, 1.0625rem)',
+              color: 'var(--color-fd-muted-foreground)',
+              lineHeight: 1.65,
+              margin: 0,
+              fontWeight: 400,
+            }}
+          >
+            Morrow is a calm, keyboard-first terminal for local LLMs via Ollama.
+            Zero telemetry. No cloud. SQLite persistence.
+          </p>
+        </div>
+
+        {/* CTA buttons */}
+        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <Link
+            href="/docs"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              padding: '0.6rem 1.4rem',
+              borderRadius: '0.5rem',
+              fontSize: '0.9375rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+              background: 'var(--color-fd-primary)',
+              color: 'var(--color-fd-primary-foreground)',
+              transition: 'opacity 0.15s',
+            }}
+          >
+            Get started
           </Link>
           <Link
-            href="/docs/commands"
-            className="px-4 py-2 rounded bg-fd-card text-fd-foreground hover:bg-fd-secondary border border-fd-border transition-colors"
+            href="https://github.com/utkarsh125/morrow"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              padding: '0.6rem 1.4rem',
+              borderRadius: '0.5rem',
+              fontSize: '0.9375rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+              background: 'var(--color-fd-secondary)',
+              color: 'var(--color-fd-foreground)',
+              border: '1px solid var(--color-fd-border)',
+              transition: 'opacity 0.15s',
+            }}
           >
-            Slash Commands →
+            View on GitHub
           </Link>
         </div>
 
-        {/* 3 Pillars Summary */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 pt-12 border-t border-fd-border">
-          
-          <div>
-            <div className="font-mono text-xs text-[#83a598] mb-1">01 / PERSISTENCE</div>
-            <h3 className="font-bold text-sm text-fd-foreground mb-1">Local SQLite Database</h3>
-            <p className="text-xs text-fd-muted-foreground leading-relaxed">
-              Stored at <code className="font-mono text-[11px] text-fd-foreground">~/.local/share/morrow/history.db</code>. Includes ephemeral incognito mode via <code className="font-mono text-[11px] text-fd-primary">/temp</code>.
-            </p>
-          </div>
-
-          <div>
-            <div className="font-mono text-xs text-fd-primary mb-1">02 / AESTHETICS</div>
-            <h3 className="font-bold text-sm text-fd-foreground mb-1">65+ Kitty Themes</h3>
-            <p className="text-xs text-fd-muted-foreground leading-relaxed">
-              Curated terminal palettes with live previews and seamless hotkey switching (<code className="font-mono text-[11px] text-fd-primary">Ctrl-T</code>).
-            </p>
-          </div>
-
-          <div>
-            <div className="font-mono text-xs text-[#b8bb26] mb-1">03 / PRIVACY</div>
-            <h3 className="font-bold text-sm text-fd-foreground mb-1">Zero Telemetry</h3>
-            <p className="text-xs text-fd-muted-foreground leading-relaxed">
-              No cloud tracking, no accounts, and no analytics. Only communicates with your local Ollama port.
-            </p>
-          </div>
-
-        </div>
-
-      </main>
-
-      {/* Minimalist Footer */}
-      <footer className="border-t border-fd-border bg-fd-background py-8 text-xs font-mono text-fd-muted-foreground">
-        <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <Logo className="w-4 h-4 text-fd-primary" />
-            <span>Morrow • Built by </span>
-            <a
-              href="https://utkarshpandey.in"
-              target="_blank"
-              rel="noreferrer"
-              className="text-fd-foreground hover:underline"
+        {/* Install snippets */}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.5rem',
+            width: '100%',
+            maxWidth: '500px',
+            marginTop: '0.5rem',
+          }}
+        >
+          {installMethods.map(({ label, cmd }) => (
+            <div
+              key={label}
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '5.5rem 1fr',
+                alignItems: 'center',
+                borderRadius: '0.5rem',
+                border: '1px solid var(--color-fd-border)',
+                overflow: 'hidden',
+                background: 'var(--color-fd-muted)',
+                fontSize: '0.8125rem',
+              }}
             >
-              Utkarsh Pandey
-            </a>
-            <span> • MIT License</span>
-          </div>
-
-          <div className="flex items-center gap-4 text-fd-muted-foreground">
-            <a href="https://github.com/utkarsh125/morrow" target="_blank" rel="noreferrer" className="hover:text-fd-foreground">
-              CLI Repo
-            </a>
-            <a href="https://github.com/utkarsh125/morrow-site" target="_blank" rel="noreferrer" className="hover:text-fd-foreground">
-              Site Repo
-            </a>
-            <a href="https://crates.io/crates/morrow" target="_blank" rel="noreferrer" className="hover:text-fd-foreground">
-              crates.io
-            </a>
-          </div>
+              <span
+                style={{
+                  padding: '0.5rem 0.75rem',
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontWeight: 600,
+                  fontSize: '0.6875rem',
+                  color: 'var(--color-fd-primary)',
+                  background: 'var(--color-fd-secondary)',
+                  borderRight: '1px solid var(--color-fd-border)',
+                  letterSpacing: '0.03em',
+                  textTransform: 'uppercase',
+                }}
+              >
+                {label}
+              </span>
+              <code
+                style={{
+                  padding: '0.5rem 0.75rem',
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: '0.8125rem',
+                  color: 'var(--color-fd-foreground)',
+                  overflowX: 'auto',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {cmd}
+              </code>
+            </div>
+          ))}
         </div>
-      </footer>
+      </section>
 
-    </div>
+      {/* ── FEATURES ─────────────────────────────────── */}
+      <section
+        style={{
+          borderTop: '1px solid var(--color-fd-border)',
+          padding: 'clamp(2.5rem, 6vw, 4rem) clamp(1rem, 5vw, 3rem)',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))',
+          gap: '1.5rem',
+          maxWidth: '960px',
+          margin: '0 auto',
+          width: '100%',
+        }}
+      >
+        {features.map(({ title, body }) => (
+          <div
+            key={title}
+            style={{
+              padding: '1.25rem 1.5rem',
+              borderRadius: '0.75rem',
+              border: '1px solid var(--color-fd-border)',
+              background: 'var(--color-fd-card)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.5rem',
+            }}
+          >
+            <h3
+              style={{
+                fontWeight: 600,
+                fontSize: '0.9375rem',
+                color: 'var(--color-fd-foreground)',
+                margin: 0,
+              }}
+            >
+              {title}
+            </h3>
+            <p
+              style={{
+                fontSize: '0.875rem',
+                color: 'var(--color-fd-muted-foreground)',
+                lineHeight: 1.65,
+                margin: 0,
+              }}
+            >
+              {body}
+            </p>
+          </div>
+        ))}
+      </section>
+
+      {/* ── FOOTER ─────────────────────────────────── */}
+      <footer
+        style={{
+          borderTop: '1px solid var(--color-fd-border)',
+          padding: '1.25rem clamp(1rem, 5vw, 3rem)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '0.5rem',
+          fontSize: '0.8125rem',
+          color: 'var(--color-fd-muted-foreground)',
+        }}
+      >
+        <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <span style={{ color: 'var(--color-fd-primary)', display: 'flex' }}>
+            <Logo size={14} />
+          </span>
+          Morrow — built by{' '}
+          <a
+            href="https://utkarshpandey.in"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'var(--color-fd-primary)', textDecoration: 'none', fontWeight: 500 }}
+          >
+            Utkarsh Pandey
+          </a>
+        </span>
+        <span>MIT License</span>
+      </footer>
+    </main>
   );
 }
