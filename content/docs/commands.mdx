@@ -1,0 +1,69 @@
+---
+title: Slash Commands
+description: Complete reference for all 21 slash commands and aliases in Morrow.
+---
+
+Type `/` at the beginning of the prompt to open the floating autocomplete menu.
+
+---
+
+## Command Reference
+
+| Command | Arguments | Aliases | Description |
+| :--- | :--- | :--- | :--- |
+| `/help` | | `/?` | Open interactive command palette and keyboard guide |
+| `/new` | | `/n`, `/reset` | Start a clean conversation session |
+| `/history` | | `/h`, `/sessions`, `/convs` | Interactive session manager (search, preview, delete `d`, rename `r`) |
+| `/model` | `[name]` | `/m`, `/models` | Switch active model or open model selector |
+| `/theme` | `[name]` | `/t`, `/themes` | Open 65+ Kitty theme picker with live preview or switch theme |
+| `/temp` | `[on\|off]` | `/temporary`, `/incognito`, `/private` | Toggle ephemeral temporary chat mode (not written to SQLite) |
+| `/rename` | `[title]` | `/title` | Rename the active conversation |
+| `/delete` | | `/del`, `/rm` | Delete current conversation |
+| `/delete all` | | `/delete-all`, `/clear-all`, `/purge` | Purge all local conversation history |
+| `/clear` | | `/cls` | Clear current session message view |
+| `/system` | `[prompt]` | `/sys`, `/prompt` | View or edit AI system prompt instructions |
+| `/sidebar` | | `/toggle-sidebar`, `/sb` | Toggle conversation sidebar visibility |
+| `/timestamps` | | `/time`, `/ts` | Toggle message timestamp headers |
+| `/copy` | | `/y`, `/yank`, `/cp` | Copy last assistant response to clipboard (OSC 52) |
+| `/export` | `[md\|json]` | `/save` | Export conversation to Markdown or JSON |
+| `/retry` | | `/regenerate`, `/redo` | Regenerate the last AI response |
+| `/stop` | | `/abort`, `/cancel` | Abort active streaming generation |
+| `/stats` | | `/info`, `/status` | View session telemetry, tokens, DB and Ollama info |
+| `/url` | `[url]` | `/endpoint`, `/host` | View or change Ollama server endpoint |
+| `/bye` | | | Exit Morrow with session confirmation |
+| `/quit` | | `/q`, `/exit` | Exit Morrow immediately |
+
+---
+
+## Examples
+
+### Switching Models
+```bash
+/model qwen2.5:7b
+/model deepseek-r1:8b
+```
+
+### Switching Themes
+```bash
+/theme gruvbox-dark
+/theme catppuccin-mocha
+/theme tokyo-night
+```
+
+### Ephemeral Mode
+```bash
+# Enable in-memory private mode
+/temp on
+
+# Disable and resume SQLite logging
+/temp off
+```
+
+### Exporting Chats
+```bash
+# Export active chat to Markdown
+/export md
+
+# Export active chat to JSON
+/export json
+```

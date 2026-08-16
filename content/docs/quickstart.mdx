@@ -1,0 +1,60 @@
+---
+title: Quickstart
+description: Get started with Morrow and Ollama in 60 seconds.
+---
+
+Morrow connects directly to your local [Ollama](https://ollama.com) daemon.
+
+---
+
+## 3-Step Setup
+
+### Step 1: Start Ollama
+
+Ensure your local Ollama server is running:
+
+```bash
+ollama serve
+```
+
+---
+
+### Step 2: Pull a Model
+
+Download your model of choice:
+
+```bash
+# Recommended general coding & reasoning
+ollama pull qwen2.5:7b
+
+# Deep reasoning model with thought blocks
+ollama pull deepseek-r1:8b
+
+# Lightweight model for laptops
+ollama pull llama3.2:3b
+```
+
+---
+
+### Step 3: Run Morrow
+
+Launch Morrow from any terminal emulator:
+
+```bash
+morrow
+```
+
+On first launch, Morrow automatically initializes:
+- Configuration file at `~/.config/morrow/config.toml`
+- History database at `~/.local/share/morrow/history.db`
+
+---
+
+## Recommended Models
+
+| Model | Parameters | Context | Best For | Pull Command |
+| :--- | :--- | :--- | :--- | :--- |
+| **Qwen 2.5** | 7B | 128k | General reasoning & code | `ollama pull qwen2.5:7b` |
+| **DeepSeek R1** | 8B | 64k | Complex reasoning with `<think>` tags | `ollama pull deepseek-r1:8b` |
+| **Llama 3.2** | 3B | 128k | Fast lightweight daily driver | `ollama pull llama3.2:3b` |
+| **Mistral NeMo** | 12B | 128k | Nuanced multilingual discussions | `ollama pull mistral-nemo` |

@@ -1,0 +1,33 @@
+---
+title: Overview
+description: Your private AI workspace, always on your machine.
+---
+
+Morrow is a calm, keyboard-first terminal workspace for chatting with local language models through [Ollama](https://ollama.com). 
+
+Conversations stay in a local SQLite database on your machine. Morrow has no accounts, telemetry, analytics, API keys, or cloud dependencies.
+
+---
+
+## Core Highlights
+
+- **Native Rust & Ratatui**: Fast, keyboard-first terminal interface with live token telemetry, status banners, collapsible session sidebars (`Ctrl-B`), and markdown code fences.
+- **65+ Built-in Kitty Color Themes**: Curated library of 65+ official Kitty terminal color themes across Dark, Light, Retro, and Vibrant categories, with live RGB palette previews (`Ctrl-T` or `/theme`).
+- **Interactive Slash Commands**: Type `/` to bring up an interactive autocomplete popup with instant filtering and syntax hints.
+- **100% Local & Ephemeral Modes**: Switch seamlessly between persistent local SQLite storage and ephemeral in-memory incognito chat (`/temp` / `/temp off`).
+- **Export & Clipboard Tools**: Copy assistant responses directly to clipboard (`/copy` via OSC 52) or export entire conversation threads to Markdown and JSON (`/export md` / `/export json`).
+
+---
+
+## The Philosophy
+
+Morrow follows three foundational principles:
+
+### 1. Complete Sovereignty
+Your data never leaves your machine. Conversations are stored in an embedded SQLite database at `~/.local/share/morrow/history.db`. Zero network egress except directly to your local Ollama instance (`http://localhost:11434`).
+
+### 2. Ergonomics & Flow
+Designed for users who live in the terminal. Every action has a single-chord shortcut. No mouse required.
+
+### 3. Visual Calm
+Designed with curated color palettes from the Kitty terminal ecosystem, structured thought process folding, and legible typography.

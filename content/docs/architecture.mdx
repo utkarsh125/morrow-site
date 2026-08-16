@@ -1,0 +1,40 @@
+---
+title: Architecture & Privacy
+description: Local SQLite storage, zero telemetry, and network isolation.
+---
+
+Morrow is engineered with strict local sovereignty.
+
+---
+
+## 1. Network Boundary
+
+Morrow only opens an HTTP client connection to the configured Ollama endpoint (default: `http://localhost:11434`).
+
+- **Zero Telemetry**: No tracking, usage analytics, error pings, or background metrics.
+- **Zero Third-Party Accounts**: No sign-in, API keys, or cloud accounts.
+- **Local Network Support**: You can point Morrow to an Ollama server running on your home LAN via `/url http://192.168.1.x:11434`.
+
+---
+
+## 2. Storage Engine
+
+Morrow uses embedded SQLite (via `rusqlite` bundled) with WAL (Write-Ahead Logging) enabled.
+
+### Database Location
+```
+~/.local/share/morrow/history.db
+```
+
+### Schema Design
+- `sessions`: Stores session UUID, title, active model, creation timestamp, and update timestamp.
+- `messages`: Stores message UUID, session reference, role (`user`, `assistant`, `system`), text content, and timestamp.
+
+---
+
+## 3. Ephemeral Mode
+
+When enabled via `/temp on`:
+- Chat messages reside in volatile RAM only.
+- SQLite writes are completely disabled for the duration of the ephemeral session.
+- Exiting Morrow or clearing the session discards all ephemeral memory.

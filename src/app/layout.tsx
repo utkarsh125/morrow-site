@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
+import { RootProvider } from 'fumadocs-ui/provider/next';
+import 'fumadocs-ui/style.css';
 import './globals.css';
 
 const inter = Inter({
@@ -70,9 +72,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} dark scroll-smooth`}>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} dark scroll-smooth`} suppressHydrationWarning>
       <body className="min-h-screen bg-[#1d2021] text-[#ebdbb2] antialiased font-sans flex flex-col selection:bg-[#504945] selection:text-[#fbf1c7]">
-        {children}
+        <RootProvider theme={{ defaultTheme: 'dark', enabled: false }}>
+          {children}
+        </RootProvider>
       </body>
     </html>
   );

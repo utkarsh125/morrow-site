@@ -1,55 +1,50 @@
-# Morrow Website & Documentation
+# Morrow Documentation
 
-> Landing page and interactive documentation for [Morrow](https://github.com/utkarsh125/morrow), live at [morrow.utkarshpandey.in](https://morrow.utkarshpandey.in).
+> Official documentation and website for [Morrow](https://github.com/utkarsh125/morrow), live at [morrow.utkarshpandey.in](https://morrow.utkarshpandey.in).
 
----
-
-## Features
-
-- **In-Browser Terminal Simulator**: Interactive Ratatui layout emulation with thought collapsible accordions, live telemetry, and slash command autocompletion.
-- **65+ Kitty Terminal Theme Explorer**: Searchable and categorized visual gallery of all 65+ official Kitty color schemes with live hex palette swatches and real-time terminal preview.
-- **Complete Slash Command Directory**: Reference catalog for all 18+ slash commands (`/help`, `/model`, `/theme`, `/temp`, `/export`, `/copy`, `/stats`, etc.) with arguments and examples.
-- **Keyboard-First Hotkey Matrix**: Visual cheat sheet with keycaps for all navigation, chat, and system shortcuts (`Ctrl-S`, `Ctrl-T`, `Ctrl-B`, `Ctrl-P`, `Ctrl-Y`, `PgUp/PgDn`, `Esc`).
-- **100% Local Privacy & Architecture**: Explanations of SQLite persistence, ephemeral memory mode, and zero-egress Ollama communications.
-- **Multi-Platform Install Tabs**: One-click copy commands for Homebrew, curl script, Cargo crates.io, Cargo Git, and Source build.
+Built with **[Fumadocs](https://fumadocs.vercel.app)**, **Next.js 15+ App Router**, **Inter** typography, and the **Gruvbox Dark** aesthetic.
 
 ---
 
-## Design & Aesthetics
+## Design Philosophy
 
-- **Theme Palette**: Gruvbox Dark aesthetic (`#1d2021` background, warm amber/yellow `#fabd2f`, orange `#fe8019`, green `#b8bb26`, aqua `#8ec07c`).
-- **Icons**: Phosphor Icons (`@phosphor-icons/react`).
-- **Typography**: Inter for primary UI and JetBrains Mono for terminal & code.
+- **Focus & Minimalism**: Pure typography, clean information hierarchy, and zero decorative icon clutter.
+- **Instant Search**: Full-text search index accessible via `Cmd + K` or `/`.
+- **65+ Kitty Theme Catalog**: Visual color palettes with exact hex values and click-to-copy functionality.
+- **Fast & Lightweight**: Server components and pre-rendered static MDX pages.
 
 ---
 
-## Tech Stack
+## Documentation Pages
 
-- **Framework**: [Next.js 15+ (App Router)](https://nextjs.org/)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS & CSS Variables
-- **Icons**: Phosphor Icons
-- **Typography**: Inter & JetBrains Mono
+- **[Overview](/docs)**: Core philosophy, privacy guarantees, SQLite storage model.
+- **[Installation](/docs/installation)**: Homebrew tap, quick install script, Cargo crates.io, and source build.
+- **[Quickstart](/docs/quickstart)**: 60-second setup with Ollama and recommended models.
+- **[Slash Commands](/docs/commands)**: Complete directory of all 21 slash commands and aliases.
+- **[Keyboard Shortcuts](/docs/shortcuts)**: Ergonomic key bindings for mouse-free navigation.
+- **[Themes Catalog](/docs/themes)**: 65+ official Kitty terminal color schemes with live swatches.
+- **[Architecture & Privacy](/docs/architecture)**: Local SQLite schema, ephemeral RAM mode, and network boundaries.
+- **[Configuration](/docs/configuration)**: `~/.config/morrow/config.toml` options.
 
 ---
 
 ## Local Development
 
 ```bash
-# Install dependencies
+# Install dependencies & generate MDX source
 npm install
 
-# Start local development server
+# Start local dev server
 npm run dev
 
 # Build production bundle
 npm run build
 
-# Start production server locally
+# Start production server
 npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to view the site.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
 ---
 
@@ -69,7 +64,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to view th
    - **Type**: `CNAME`
    - **Name / Host**: `morrow`
    - **Value / Target**: `cname.vercel-dns.com`
-8. Vercel will automatically provision SSL/TLS certificates and verify DNS within minutes.
+8. Vercel will automatically provision SSL/TLS certificates and verify DNS.
 
 ---
 

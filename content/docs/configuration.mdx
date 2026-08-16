@@ -1,0 +1,51 @@
+---
+title: Configuration
+description: Customize default settings in config.toml.
+---
+
+Morrow loads its configuration on launch from `~/.config/morrow/config.toml`.
+
+If the file does not exist, Morrow creates it with sensible defaults on first run.
+
+---
+
+## File Location
+
+- **Linux**: `~/.config/morrow/config.toml`
+- **macOS**: `~/Library/Application Support/morrow/config.toml` (or `~/.config/morrow/config.toml`)
+
+---
+
+## Example `config.toml`
+
+```toml
+# Default Ollama backend server endpoint
+ollama_url = "http://localhost:11434"
+
+# Default model on startup
+default_model = "qwen2.5:7b"
+
+# Default theme (choose from any of the 65+ Kitty themes)
+theme = "gruvbox-dark"
+
+# UI preferences
+show_sidebar = true
+show_timestamps = false
+```
+
+---
+
+## Command Line Arguments
+
+Morrow also accepts flags directly from the CLI:
+
+```bash
+# Launch with a specific model
+morrow --model deepseek-r1:8b
+
+# Launch with a specific theme
+morrow --theme tokyo-night
+
+# Launch targeting a custom Ollama server URL
+morrow --url http://192.168.1.50:11434
+```

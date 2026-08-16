@@ -1,0 +1,70 @@
+---
+title: Installation
+description: Install Morrow on macOS, Linux, or build from source.
+---
+
+Choose your preferred installation method below.
+
+---
+
+### Homebrew (macOS & Linux)
+
+The recommended installation method for macOS and Linux users:
+
+```bash
+brew install utkarsh125/tap/morrow
+```
+
+To update in the future:
+
+```bash
+brew upgrade morrow
+```
+
+---
+
+### Quick Install Script (Linux & macOS)
+
+Downloads the latest pre-compiled release binary directly:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/utkarsh125/morrow/main/install.sh | bash
+```
+
+---
+
+### Cargo from crates.io
+
+Install via Rust's package manager:
+
+```bash
+cargo install morrow
+```
+
+---
+
+### Cargo from Git
+
+Install the latest commit directly from the repository:
+
+```bash
+cargo install --git https://github.com/utkarsh125/morrow
+```
+
+---
+
+### Build from Source
+
+Requirements: Rust 1.80+ (`rustup`)
+
+```bash
+git clone https://github.com/utkarsh125/morrow.git
+cd morrow
+cargo install --path .
+```
+
+Verify your installation:
+
+```bash
+morrow --version
+```
