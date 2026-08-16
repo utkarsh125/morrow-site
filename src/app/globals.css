@@ -1,6 +1,12 @@
 @import "tailwindcss";
 
-:root, .dark {
+:root, :host, .dark {
+  --font-inter: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  --default-font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  --default-mono-font-family: var(--font-mono), 'JetBrains Mono', monospace !important;
+
+  /* Fumadocs Theme Tokens -> Gruvbox Dark */
   --color-fd-background: #1d2021;
   --color-fd-foreground: #ebdbb2;
   --color-fd-muted: #282828;
@@ -28,13 +34,22 @@
   --color-fd-border: #3c3836;
 }
 
-body {
+html, body {
   background-color: #1d2021;
   color: #ebdbb2;
-  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   overflow-x: hidden;
   selection-background-color: #504945;
   selection-color: #fbf1c7;
+}
+
+/* Apply Inter universally */
+* {
+  font-family: inherit;
+}
+
+code, kbd, samp, pre, .font-mono {
+  font-family: var(--font-mono), 'JetBrains Mono', monospace !important;
 }
 
 /* Custom Scrollbars in Gruvbox */
@@ -61,7 +76,7 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-mono), monospace;
+  font-family: var(--font-mono), 'JetBrains Mono', monospace !important;
   font-size: 0.75rem;
   font-weight: 600;
   padding: 0.15rem 0.45rem;
@@ -72,7 +87,11 @@ body {
   letter-spacing: 0.02em;
 }
 
-/* Fix table and prose styling for Gruvbox */
+/* Table and prose styling for Gruvbox */
+.prose {
+  font-family: var(--font-inter), 'Inter', sans-serif !important;
+}
+
 .prose table {
   border-collapse: collapse;
   width: 100%;
@@ -97,4 +116,5 @@ body {
   border-radius: 0.25rem;
   color: #fabd2f;
   font-size: 0.85em;
+  font-family: var(--font-mono), 'JetBrains Mono', monospace !important;
 }
