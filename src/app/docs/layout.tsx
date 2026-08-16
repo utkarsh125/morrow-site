@@ -12,8 +12,6 @@ export default function RootDocsLayout({ children }: { children: ReactNode }) {
       <DocsLayout
         tree={source.pageTree}
         {...baseOptions}
-        nav={{ enabled: false }}
-        themeSwitch={{ enabled: false }}
         sidebar={{
           collapsible: true,
           defaultOpenLevel: 1,
