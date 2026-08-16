@@ -4,9 +4,17 @@ import React, { useState, useEffect, useRef } from 'react';
 import { THEMES, Theme } from '@/data/themes';
 import { COMMANDS, CommandInfo } from '@/data/commands';
 import { 
-  Terminal, ChevronRight, ChevronDown, Sparkles, Send, 
-  PanelLeft, Copy, Check, Info, Shield, RefreshCw, X, Play
-} from 'lucide-react';
+  Terminal, 
+  CaretRight, 
+  CaretDown, 
+  Sparkle, 
+  PaperPlaneTilt, 
+  SidebarSimple, 
+  Copy, 
+  Check, 
+  ShieldCheck, 
+  ArrowsClockwise 
+} from '@phosphor-icons/react';
 
 interface Message {
   id: string;
@@ -36,9 +44,11 @@ interface TerminalDemoProps {
   onThemeSelect?: (theme: Theme) => void;
 }
 
+const defaultGruvboxTheme = THEMES.find((t) => t.id === 'gruvbox-dark') || THEMES[0];
+
 export default function TerminalDemo({ currentTheme, onThemeSelect }: TerminalDemoProps) {
-  // Theme state
-  const [theme, setTheme] = useState<Theme>(currentTheme || THEMES[0]);
+  // Theme state defaulting to Gruvbox Dark
+  const [theme, setTheme] = useState<Theme>(currentTheme || defaultGruvboxTheme);
   
   useEffect(() => {
     if (currentTheme) {
@@ -200,7 +210,7 @@ pub async fn run_pool(num_workers: usize, mut rx: mpsc::Receiver<Job>, token: Ca
           id: `sys-${Date.now()}`,
           sender: 'system',
           timestamp: new Date().toLocaleTimeString(),
-          content: `Current theme: **${theme.name}** (${theme.category}). Type \`/theme <name>\` (e.g. \`/theme tokyo-night\`, \`/theme synthwave-84\`, \`/theme dracula\`) or use Ctrl-T to browse all 65+ themes.`,
+          content: `Current theme: **${theme.name}** (${theme.category}). Type \`/theme <name>\` (e.g. \`/theme gruvbox-dark\`, \`/theme catppuccin-mocha\`, \`/theme tokyo-night\`) or use Ctrl-T to browse all 65+ themes.`,
         };
       } else {
         const found = THEMES.find(
@@ -220,7 +230,7 @@ pub async fn run_pool(num_workers: usize, mut rx: mpsc::Receiver<Job>, token: Ca
             id: `sys-${Date.now()}`,
             sender: 'system',
             timestamp: new Date().toLocaleTimeString(),
-            content: `Theme "${arg}" not found. Try \`/theme catppuccin-mocha\`, \`/theme tokyo-night\`, \`/theme dracula\`, or \`/theme rose-pine\`.`,
+            content: `Theme "${arg}" not found. Try \`/theme gruvbox-dark\`, \`/theme catppuccin-mocha\`, or \`/theme tokyo-night\`.`,
           };
         }
       }
@@ -333,7 +343,7 @@ pub async fn run_pool(num_workers: usize, mut rx: mpsc::Receiver<Job>, token: Ca
         timestamp: new Date().toLocaleTimeString(),
         thought: `Evaluating prompt against local Ollama model ${activeModel}.\nConstructing structured answer with high signal-to-noise ratio.`,
         thoughtTime: '0.8s',
-        content: `This is a live in-browser Hermes TUI demonstration of **Morrow**. On your machine, Morrow streams directly from your local Ollama instance with SQLite persistence, zero latency overhead, and 65+ Kitty terminal themes.\n\nTry typing \`/help\`, \`/theme synthwave-84\`, \`/model deepseek-r1\`, or \`/stats\` in the input bar below!`,
+        content: `This is a live in-browser terminal demonstration of **Morrow**. On your machine, Morrow streams directly from your local Ollama instance with SQLite persistence, zero latency overhead, and 65+ Kitty terminal themes.\n\nTry typing \`/help\`, \`/theme gruvbox-dark\`, \`/model deepseek-r1\`, or \`/stats\` in the input bar below!`,
         tokens: 382,
         speed: '44.8 t/s',
       };
@@ -379,15 +389,15 @@ pub async fn run_pool(num_workers: usize, mut rx: mpsc::Receiver<Job>, token: Ca
       
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-10">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#181c2e] border border-[#2d3654] text-blue-400 text-xs font-mono mb-3">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>Interactive Browser Playground</span>
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#282828] border border-[#3c3836] text-[#fabd2f] text-xs font-mono mb-3">
+          <Sparkle weight="bold" className="w-3.5 h-3.5" />
+          <span>Interactive Browser Terminal</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          Experience the Hermes TUI in your browser
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-[#fbf1c7] tracking-tight font-sans">
+          Experience the terminal workspace in your browser
         </h2>
-        <p className="mt-3 text-zinc-400 text-sm sm:text-base">
-          Test slash commands (<code className="text-blue-300 font-mono">/theme</code>, <code className="text-blue-300 font-mono">/model</code>, <code className="text-blue-300 font-mono">/stats</code>), toggle thought process trees, and feel the responsive keyboard workflow.
+        <p className="mt-3 text-[#a89984] text-sm sm:text-base font-sans">
+          Test slash commands (<code className="text-[#fabd2f] font-mono">/theme</code>, <code className="text-[#fabd2f] font-mono">/model</code>, <code className="text-[#fabd2f] font-mono">/stats</code>), toggle thought process trees, and test keyboard shortcuts.
         </p>
       </div>
 
@@ -402,7 +412,7 @@ pub async fn run_pool(num_workers: usize, mut rx: mpsc::Receiver<Job>, token: Ca
         }}
       >
         
-        {/* Top Window Bar (Hermes TUI Header) */}
+        {/* Top Window Bar */}
         <div 
           className="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2 select-none"
           style={{
@@ -414,27 +424,27 @@ pub async fn run_pool(num_workers: usize, mut rx: mpsc::Receiver<Job>, token: Ca
           {/* Left: Window Controls & Title */}
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1.5">
-              <span className="w-3 h-3 rounded-full bg-[#ff5f56] inline-block"></span>
-              <span className="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block"></span>
-              <span className="w-3 h-3 rounded-full bg-[#27c93f] inline-block"></span>
+              <span className="w-3 h-3 rounded-full bg-[#fb4934] inline-block"></span>
+              <span className="w-3 h-3 rounded-full bg-[#fabd2f] inline-block"></span>
+              <span className="w-3 h-3 rounded-full bg-[#b8bb26] inline-block"></span>
             </div>
 
-            <div className="h-4 w-px bg-zinc-700/60 mx-1"></div>
+            <div className="h-4 w-px bg-[#504945]/60 mx-1"></div>
 
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="p-1 rounded hover:opacity-80 transition-opacity flex items-center gap-1 text-xs"
+              className="p-1 rounded hover:opacity-80 transition-opacity flex items-center gap-1 text-xs cursor-pointer"
               style={{ color: theme.muted }}
               title="Toggle sidebar (Ctrl-B)"
             >
-              <PanelLeft className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline text-[11px]">Sidebar</span>
+              <SidebarSimple weight="bold" className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline text-[11px] font-sans">Sidebar</span>
             </button>
 
-            <span className="font-bold text-xs sm:text-sm flex items-center gap-1.5" style={{ color: theme.accent }}>
+            <span className="font-bold text-xs sm:text-sm flex items-center gap-1.5 font-sans" style={{ color: theme.accent }}>
               <span>Morrow</span>
-              <span className="text-[11px] font-normal opacity-70">::</span>
-              <span className="font-medium truncate max-w-[160px] sm:max-w-xs" style={{ color: theme.text }}>
+              <span className="text-[11px] font-normal opacity-70 font-mono">::</span>
+              <span className="font-medium truncate max-w-[160px] sm:max-w-xs font-sans" style={{ color: theme.text }}>
                 {sessionTitle}
               </span>
             </span>
@@ -445,7 +455,7 @@ pub async fn run_pool(num_workers: usize, mut rx: mpsc::Receiver<Job>, token: Ca
             
             {/* Model Pill */}
             <div 
-              className="px-2 py-0.5 rounded border flex items-center gap-1 font-semibold"
+              className="px-2 py-0.5 rounded border flex items-center gap-1 font-semibold font-mono"
               style={{
                 backgroundColor: theme.surface,
                 borderColor: theme.border,
@@ -460,8 +470,8 @@ pub async fn run_pool(num_workers: usize, mut rx: mpsc::Receiver<Job>, token: Ca
             <span className="hidden md:inline font-mono">42.6 t/s</span>
             
             {/* DB Status */}
-            <span className="hidden sm:inline flex items-center gap-1" style={{ color: isEphemeral ? theme.warning : theme.success }}>
-              <Shield className="w-3 h-3" />
+            <span className="hidden sm:inline flex items-center gap-1 font-mono" style={{ color: isEphemeral ? theme.warning : theme.success }}>
+              <ShieldCheck weight="bold" className="w-3.5 h-3.5" />
               <span>{isEphemeral ? 'TEMP (Incognito)' : 'SQLite: OK'}</span>
             </span>
 
@@ -494,14 +504,14 @@ pub async fn run_pool(num_workers: usize, mut rx: mpsc::Receiver<Job>, token: Ca
               }}
             >
               <div>
-                <div className="flex items-center justify-between pb-2 mb-2 border-b text-[11px] font-semibold uppercase tracking-wider" style={{ borderColor: theme.border, color: theme.muted }}>
+                <div className="flex items-center justify-between pb-2 mb-2 border-b text-[11px] font-semibold uppercase tracking-wider font-sans" style={{ borderColor: theme.border, color: theme.muted }}>
                   <span>Sessions</span>
                   <button 
                     onClick={() => {
                       setMessages([]);
                       setSessionTitle('New Conversation');
                     }}
-                    className="hover:opacity-80 text-[10px] px-1.5 py-0.5 rounded font-mono border"
+                    className="hover:opacity-80 text-[10px] px-1.5 py-0.5 rounded font-mono border cursor-pointer"
                     style={{ backgroundColor: theme.surface, borderColor: theme.border, color: theme.accent }}
                   >
                     + /new
@@ -525,8 +535,8 @@ pub async fn run_pool(num_workers: usize, mut rx: mpsc::Receiver<Job>, token: Ca
                         borderLeft: activeSessionId === s.id ? `3px solid ${theme.accent}` : '3px solid transparent',
                       }}
                     >
-                      <div className="truncate">{s.title}</div>
-                      <div className="flex items-center justify-between text-[10px] mt-0.5 opacity-60">
+                      <div className="truncate font-sans">{s.title}</div>
+                      <div className="flex items-center justify-between text-[10px] mt-0.5 opacity-60 font-mono">
                         <span>{s.model}</span>
                         <span>{s.time}</span>
                       </div>
@@ -537,7 +547,7 @@ pub async fn run_pool(num_workers: usize, mut rx: mpsc::Receiver<Job>, token: Ca
 
               {/* Sidebar bottom shortcuts helper */}
               <div 
-                className="pt-2 border-t text-[10px] space-y-1 opacity-70"
+                className="pt-2 border-t text-[10px] space-y-1 opacity-70 font-mono"
                 style={{ borderColor: theme.border, color: theme.muted }}
               >
                 <div className="flex justify-between"><span>Ctrl-T</span><span>Themes (65+)</span></div>
@@ -566,7 +576,7 @@ pub async fn run_pool(num_workers: usize, mut rx: mpsc::Receiver<Job>, token: Ca
                       ) : (
                         <span style={{ color: theme.warning }}>⚙ System</span>
                       )}
-                      <span className="font-normal opacity-50">{msg.timestamp}</span>
+                      <span className="font-normal opacity-50 font-mono">{msg.timestamp}</span>
                     </div>
 
                     {msg.sender === 'assistant' && (
@@ -577,12 +587,12 @@ pub async fn run_pool(num_workers: usize, mut rx: mpsc::Receiver<Job>, token: Ca
                       >
                         {copiedResponseId === msg.id ? (
                           <>
-                            <Check className="w-3 h-3 text-emerald-400" />
-                            <span className="text-emerald-400">Copied</span>
+                            <Check weight="bold" className="w-3 h-3 text-[#b8bb26]" />
+                            <span className="text-[#b8bb26]">Copied</span>
                           </>
                         ) : (
                           <>
-                            <Copy className="w-3 h-3" />
+                            <Copy weight="bold" className="w-3 h-3" />
                             <span>/copy</span>
                           </>
                         )}
@@ -609,11 +619,11 @@ pub async fn run_pool(num_workers: usize, mut rx: mpsc::Receiver<Job>, token: Ca
                       >
                         <div className="flex items-center gap-1.5">
                           {expandedThoughts[msg.id] ? (
-                            <ChevronDown className="w-3.5 h-3.5" />
+                            <CaretDown weight="bold" className="w-3.5 h-3.5" />
                           ) : (
-                            <ChevronRight className="w-3.5 h-3.5" />
+                            <CaretRight weight="bold" className="w-3.5 h-3.5" />
                           )}
-                          <span className="font-semibold">Thought process</span>
+                          <span className="font-semibold font-sans">Thought process</span>
                           {msg.thoughtTime && <span className="opacity-70">({msg.thoughtTime})</span>}
                         </div>
                         <span className="text-[10px] opacity-60 uppercase">
@@ -636,7 +646,7 @@ pub async fn run_pool(num_workers: usize, mut rx: mpsc::Receiver<Job>, token: Ca
                   )}
 
                   {/* Message Content */}
-                  <div className="text-xs sm:text-sm leading-relaxed whitespace-pre-wrap">
+                  <div className="text-xs sm:text-sm leading-relaxed whitespace-pre-wrap font-sans">
                     {msg.content}
                   </div>
 
@@ -662,7 +672,7 @@ pub async fn run_pool(num_workers: usize, mut rx: mpsc::Receiver<Job>, token: Ca
                           onClick={() => handleCopyCode(msg.codeBlock!.code)}
                           className="flex items-center gap-1 hover:opacity-100 opacity-60 cursor-pointer"
                         >
-                          <Copy className="w-3 h-3" />
+                          <Copy weight="bold" className="w-3 h-3" />
                           <span>Copy code</span>
                         </button>
                       </div>
@@ -688,7 +698,7 @@ pub async fn run_pool(num_workers: usize, mut rx: mpsc::Receiver<Job>, token: Ca
 
               {isGenerating && (
                 <div className="flex items-center gap-2 text-xs font-mono animate-pulse" style={{ color: theme.accent }}>
-                  <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                  <ArrowsClockwise weight="bold" className="w-3.5 h-3.5 animate-spin" />
                   <span>Streaming response from local Ollama...</span>
                 </div>
               )}
@@ -715,11 +725,11 @@ pub async fn run_pool(num_workers: usize, mut rx: mpsc::Receiver<Job>, token: Ca
                   }}
                 >
                   <div 
-                    className="px-3 py-1.5 border-b text-[10px] font-bold uppercase tracking-wider flex justify-between"
+                    className="px-3 py-1.5 border-b text-[10px] font-bold uppercase tracking-wider flex justify-between font-sans"
                     style={{ backgroundColor: theme.surface, borderColor: theme.border, color: theme.muted }}
                   >
                     <span>Slash Commands</span>
-                    <span>Use ↑↓ and Tab/Enter to select</span>
+                    <span className="font-mono">Use ↑↓ and Tab/Enter</span>
                   </div>
 
                   <div className="divide-y overflow-y-auto max-h-48 scrollbar-thin" style={{ borderColor: theme.border }}>
@@ -768,8 +778,8 @@ pub async fn run_pool(num_workers: usize, mut rx: mpsc::Receiver<Job>, token: Ca
                   value={inputVal}
                   onChange={(e) => setInputVal(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="Type a message or '/' for slash commands (/theme, /model, /stats)..."
-                  className="flex-1 bg-transparent border-none outline-none font-mono text-xs sm:text-sm placeholder:text-zinc-600"
+                  placeholder="Type a prompt or '/' for slash commands (/theme, /model, /stats)..."
+                  className="flex-1 bg-transparent border-none outline-none font-mono text-xs sm:text-sm placeholder:text-[#928374]"
                   style={{ color: theme.text }}
                 />
 
@@ -783,16 +793,16 @@ pub async fn run_pool(num_workers: usize, mut rx: mpsc::Receiver<Job>, token: Ca
                   }}
                   title="Send (Enter or Ctrl-S)"
                 >
-                  <Send className="w-3.5 h-3.5" />
+                  <PaperPlaneTilt weight="bold" className="w-3.5 h-3.5" />
                 </button>
               </div>
 
               {/* Bottom Hotkey Help */}
-              <div className="mt-2 flex flex-wrap items-center justify-between gap-2 text-[10px]" style={{ color: theme.muted }}>
+              <div className="mt-2 flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono" style={{ color: theme.muted }}>
                 <div className="flex items-center gap-3">
-                  <span><strong className="font-mono">Enter</strong> Send</span>
-                  <span><strong className="font-mono">Tab</strong> Autocomplete</span>
-                  <span><strong className="font-mono">/theme &lt;name&gt;</strong> Switch theme</span>
+                  <span><strong>Enter</strong> Send</span>
+                  <span><strong>Tab</strong> Autocomplete</span>
+                  <span><strong>/theme &lt;name&gt;</strong> Switch theme</span>
                 </div>
                 <div>
                   <span>Current Theme: <strong>{theme.name}</strong></span>

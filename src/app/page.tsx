@@ -13,15 +13,17 @@ import QuickstartGuide from '@/components/QuickstartGuide';
 import DnsDeploymentGuide from '@/components/DnsDeploymentGuide';
 import Footer from '@/components/Footer';
 
+const defaultGruvboxTheme = THEMES.find((t) => t.id === 'gruvbox-dark') || THEMES[0];
+
 export default function Home() {
-  const [selectedTheme, setSelectedTheme] = useState<Theme>(THEMES[0]);
+  const [selectedTheme, setSelectedTheme] = useState<Theme>(defaultGruvboxTheme);
 
   const handleSelectTheme = (newTheme: Theme) => {
     setSelectedTheme(newTheme);
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0c0d12] text-zinc-100 selection:bg-blue-500/30 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[#1d2021] text-[#ebdbb2] selection:bg-[#504945] selection:text-[#fbf1c7] font-sans">
       {/* Top Sticky Navigation */}
       <Navbar />
 
@@ -30,7 +32,7 @@ export default function Home() {
         {/* Hero Section with Quick Install Tabs */}
         <Hero />
 
-        {/* In-Browser Interactive Hermes TUI Playground */}
+        {/* In-Browser Interactive TUI Playground */}
         <TerminalDemo currentTheme={selectedTheme} onThemeSelect={handleSelectTheme} />
 
         {/* 100% Local Privacy & Architecture */}

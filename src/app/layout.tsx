@@ -3,13 +3,13 @@ import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 
 const inter = Inter({
-  variable: '--font-geist-sans',
+  variable: '--font-inter',
   subsets: ['latin'],
   display: 'swap',
 });
 
 const jetbrainsMono = JetBrains_Mono({
-  variable: '--font-geist-mono',
+  variable: '--font-mono',
   subsets: ['latin'],
   display: 'swap',
 });
@@ -17,7 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: 'Morrow — Your private AI workspace, always on your machine',
   description:
-    'A calm, keyboard-first, Hermes-inspired terminal workspace for chatting with local language models through Ollama. Zero telemetry, SQLite persistence, and 65+ Kitty terminal themes.',
+    'A calm, keyboard-first terminal workspace for chatting with local language models through Ollama. Zero telemetry, SQLite persistence, and 65+ Kitty terminal themes.',
   keywords: [
     'Morrow',
     'AI',
@@ -27,10 +27,10 @@ export const metadata: Metadata = {
     'Rust',
     'Ratatui',
     'Local LLM',
-    'Hermes',
     'Private AI',
     'SQLite',
     'Kitty Themes',
+    'Gruvbox',
     'Utkarsh Pandey',
   ],
   authors: [{ name: 'Utkarsh Pandey', url: 'https://utkarshpandey.in' }],
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Morrow — Your private AI workspace, always on your machine',
     description:
-      'Calm, keyboard-first, Hermes-inspired terminal workspace for local LLMs via Ollama. 100% private with local SQLite persistence and 65+ Kitty terminal themes.',
+      'Calm, keyboard-first terminal workspace for local LLMs via Ollama. 100% private with local SQLite persistence and 65+ Kitty terminal themes.',
     url: 'https://morrow.utkarshpandey.in',
     siteName: 'Morrow',
     locale: 'en_US',
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Morrow — Your private AI workspace, always on your machine',
     description:
-      'Hermes-inspired terminal workspace for local Ollama models. Zero telemetry, local SQLite storage, 65+ Kitty themes.',
+      'Calm, keyboard-first terminal workspace for local Ollama models. Zero telemetry, local SQLite storage, 65+ Kitty themes.',
     creator: '@utkarsh125',
   },
   robots: {
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0c0d12',
+  themeColor: '#1d2021',
   width: 'device-width',
   initialScale: 1,
 };
@@ -71,7 +71,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} dark scroll-smooth`}>
-      <body className="min-h-screen bg-[#0c0d12] text-zinc-100 antialiased font-sans flex flex-col">
+      <body className="min-h-screen bg-[#1d2021] text-[#ebdbb2] antialiased font-sans flex flex-col selection:bg-[#504945] selection:text-[#fbf1c7]">
         {children}
       </body>
     </html>

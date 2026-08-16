@@ -6,7 +6,7 @@
 
 ## Features
 
-- **In-Browser Hermes TUI Simulator**: Interactive Ratatui layout emulation with thought collapsible accordions, live telemetry, and slash command autocompletion.
+- **In-Browser Terminal Simulator**: Interactive Ratatui layout emulation with thought collapsible accordions, live telemetry, and slash command autocompletion.
 - **65+ Kitty Terminal Theme Explorer**: Searchable and categorized visual gallery of all 65+ official Kitty color schemes with live hex palette swatches and real-time terminal preview.
 - **Complete Slash Command Directory**: Reference catalog for all 18+ slash commands (`/help`, `/model`, `/theme`, `/temp`, `/export`, `/copy`, `/stats`, etc.) with arguments and examples.
 - **Keyboard-First Hotkey Matrix**: Visual cheat sheet with keycaps for all navigation, chat, and system shortcuts (`Ctrl-S`, `Ctrl-T`, `Ctrl-B`, `Ctrl-P`, `Ctrl-Y`, `PgUp/PgDn`, `Esc`).
@@ -15,12 +15,20 @@
 
 ---
 
+## Design & Aesthetics
+
+- **Theme Palette**: Gruvbox Dark aesthetic (`#1d2021` background, warm amber/yellow `#fabd2f`, orange `#fe8019`, green `#b8bb26`, aqua `#8ec07c`).
+- **Icons**: Phosphor Icons (`@phosphor-icons/react`).
+- **Typography**: Inter for primary UI and JetBrains Mono for terminal & code.
+
+---
+
 ## Tech Stack
 
 - **Framework**: [Next.js 15+ (App Router)](https://nextjs.org/)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS & CSS Variables
-- **Icons**: Lucide React & Custom SVG
+- **Icons**: Phosphor Icons
 - **Typography**: Inter & JetBrains Mono
 
 ---
@@ -41,7 +49,7 @@ npm run build
 npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the site.
+Open [http://localhost:3000](http://localhost:3000) with your browser to view the site.
 
 ---
 
@@ -49,9 +57,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 1. Push this repository to GitHub:
    ```bash
-   git remote add origin https://github.com/utkarsh125/morrow-site.git
-   git branch -M main
-   git push -u origin main
+   git push origin main
    ```
 
 2. Open the [Vercel Dashboard](https://vercel.com/dashboard) and click **"Add New Project"**.

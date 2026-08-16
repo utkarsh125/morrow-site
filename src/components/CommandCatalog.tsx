@@ -2,7 +2,13 @@
 
 import React, { useState, useMemo } from 'react';
 import { COMMANDS, CommandInfo } from '@/data/commands';
-import { Command, Search, Copy, Check, Terminal, Sparkles } from 'lucide-react';
+import { 
+  Command, 
+  MagnifyingGlass, 
+  Copy, 
+  Check, 
+  Terminal 
+} from '@phosphor-icons/react';
 
 export default function CommandCatalog() {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
@@ -32,32 +38,32 @@ export default function CommandCatalog() {
   };
 
   return (
-    <section id="commands" className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-[#1e2336]">
+    <section id="commands" className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-[#3c3836]">
       
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#162136] border border-[#2b3e66] text-blue-400 text-xs font-mono mb-3">
-            <Command className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#282828] border border-[#3c3836] text-[#83a598] text-xs font-mono mb-3">
+            <Command weight="bold" className="w-3.5 h-3.5" />
             <span>Interactive Slash Command Palette</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#fbf1c7] tracking-tight font-sans">
             Comprehensive Command Reference
           </h2>
-          <p className="mt-2 text-zinc-400 text-sm sm:text-base max-w-xl">
-            Type <code className="text-blue-300 font-mono text-xs bg-[#161a28] px-1.5 py-0.5 rounded border border-[#2c344e]">/</code> anywhere in Morrow to trigger the floating autocomplete popup.
+          <p className="mt-2 text-[#a89984] text-sm sm:text-base max-w-xl font-sans">
+            Type <code className="text-[#fabd2f] font-mono text-xs bg-[#282828] px-1.5 py-0.5 rounded border border-[#3c3836]">/</code> anywhere in Morrow to trigger the floating autocomplete popup.
           </p>
         </div>
 
         {/* Search */}
         <div className="w-full md:w-72 relative">
-          <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-500" />
+          <MagnifyingGlass weight="bold" className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#928374]" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search slash commands..."
-            className="w-full pl-9 pr-4 py-2 bg-[#121520] border border-[#282f48] focus:border-blue-500/50 rounded-xl text-xs sm:text-sm text-zinc-200 placeholder:text-zinc-500 outline-none transition-all shadow-inner"
+            className="w-full pl-9 pr-4 py-2 bg-[#282828] border border-[#3c3836] focus:border-[#83a598]/60 rounded-xl text-xs sm:text-sm text-[#ebdbb2] placeholder:text-[#928374] outline-none transition-all shadow-inner font-sans"
           />
         </div>
       </div>
@@ -70,14 +76,14 @@ export default function CommandCatalog() {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 cursor-pointer ${
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 cursor-pointer font-sans ${
                 selectedCategory === cat
-                  ? 'bg-blue-500/15 text-blue-300 border border-blue-500/30 font-semibold shadow-sm'
-                  : 'bg-[#141724] text-zinc-400 border border-[#23283c] hover:bg-[#1a1e30] hover:text-zinc-200'
+                  ? 'bg-[#83a598]/15 text-[#83a598] border border-[#83a598]/40 font-semibold shadow-sm'
+                  : 'bg-[#282828] text-[#a89984] border border-[#3c3836] hover:bg-[#32302f] hover:text-[#ebdbb2]'
               }`}
             >
               <span>{cat}</span>
-              <span className={`text-[10px] px-1 rounded ${selectedCategory === cat ? 'bg-blue-500/20 text-blue-200' : 'bg-[#1b2030] text-zinc-500'}`}>
+              <span className={`text-[10px] px-1 rounded font-mono ${selectedCategory === cat ? 'bg-[#83a598]/20 text-[#83a598]' : 'bg-[#1d2021] text-[#928374]'}`}>
                 {count}
               </span>
             </button>
@@ -90,41 +96,41 @@ export default function CommandCatalog() {
         {filteredCommands.map((cmd) => (
           <div
             key={cmd.name}
-            className="rounded-xl border border-[#22273a] bg-[#11141e] hover:border-[#353f60] p-4 flex flex-col justify-between transition-all group"
+            className="rounded-xl border border-[#3c3836] bg-[#282828] hover:border-[#504945] hover:bg-[#32302f] p-4 flex flex-col justify-between transition-all group"
           >
             <div>
               
               {/* Top Row: Command Name & Category */}
               <div className="flex items-start justify-between gap-2 mb-2">
                 <div className="flex items-center gap-2">
-                  <span className="font-mono font-bold text-sm text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20">
+                  <span className="font-mono font-bold text-sm text-[#fabd2f] bg-[#fabd2f]/10 px-2 py-0.5 rounded border border-[#fabd2f]/20">
                     {cmd.name}
                   </span>
                   {cmd.args && (
-                    <span className="font-mono text-xs text-zinc-400 opacity-80">
+                    <span className="font-mono text-xs text-[#a89984]">
                       {cmd.args}
                     </span>
                   )}
                 </div>
 
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#1c2236] text-zinc-400 border border-[#2a3450]">
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#1d2021] text-[#a89984] border border-[#3c3836]">
                   {cmd.category}
                 </span>
               </div>
 
               {/* Description */}
-              <p className="text-xs text-zinc-300 mt-2 leading-relaxed">
+              <p className="text-xs text-[#ebdbb2] mt-2 leading-relaxed font-sans">
                 {cmd.description}
               </p>
 
               {/* Aliases */}
               {cmd.aliases && cmd.aliases.length > 0 && (
                 <div className="mt-3 flex items-center gap-1.5 flex-wrap">
-                  <span className="text-[10px] text-zinc-500 font-mono">Aliases:</span>
+                  <span className="text-[10px] text-[#928374] font-mono">Aliases:</span>
                   {cmd.aliases.map((alias) => (
                     <span
                       key={alias}
-                      className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#161a28] text-zinc-400 border border-[#262e44]"
+                      className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#1d2021] text-[#a89984] border border-[#3c3836]"
                     >
                       {alias}
                     </span>
@@ -136,21 +142,21 @@ export default function CommandCatalog() {
 
             {/* Bottom Example & Copy */}
             {cmd.example && (
-              <div className="mt-4 pt-3 border-t border-[#1e2336] flex items-center justify-between gap-2 bg-[#0e1017] -mx-4 -mb-4 p-3 rounded-b-xl">
-                <div className="flex items-center gap-1.5 overflow-x-auto text-[11px] font-mono text-zinc-400">
-                  <span className="text-blue-400 select-none">$</span>
-                  <code className="text-zinc-300">{cmd.example}</code>
+              <div className="mt-4 pt-3 border-t border-[#3c3836] flex items-center justify-between gap-2 bg-[#1d2021] -mx-4 -mb-4 p-3 rounded-b-xl">
+                <div className="flex items-center gap-1.5 overflow-x-auto text-[11px] font-mono text-[#a89984]">
+                  <span className="text-[#fabd2f] select-none">$</span>
+                  <code className="text-[#ebdbb2]">{cmd.example}</code>
                 </div>
 
                 <button
                   onClick={() => handleCopy(cmd.example!, cmd.name)}
-                  className="p-1 rounded bg-[#181c2c] hover:bg-[#22283e] border border-[#2c3652] text-zinc-400 hover:text-white transition-colors cursor-pointer"
+                  className="p-1 rounded bg-[#282828] hover:bg-[#32302f] border border-[#3c3836] text-[#a89984] hover:text-[#fbf1c7] transition-colors cursor-pointer"
                   title="Copy example"
                 >
                   {copiedName === cmd.name ? (
-                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                    <Check weight="bold" className="w-3.5 h-3.5 text-[#b8bb26]" />
                   ) : (
-                    <Copy className="w-3.5 h-3.5" />
+                    <Copy weight="bold" className="w-3.5 h-3.5" />
                   )}
                 </button>
               </div>
@@ -161,7 +167,7 @@ export default function CommandCatalog() {
       </div>
 
       {filteredCommands.length === 0 && (
-        <div className="text-center py-12 text-zinc-500 font-mono text-sm">
+        <div className="text-center py-12 text-[#928374] font-mono text-sm">
           No commands matching &quot;{searchQuery}&quot; found in category &quot;{selectedCategory}&quot;.
         </div>
       )}

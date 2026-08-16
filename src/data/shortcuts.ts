@@ -63,7 +63,7 @@ export const SHORTCUTS: ShortcutInfo[] = [
   {
     keys: ['Ctrl', 'B'],
     action: 'Toggle Sidebar',
-    description: 'Show or hide the Hermes session manager sidebar',
+    description: 'Show or hide the conversation session sidebar',
     category: 'Appearance'
   },
   {
