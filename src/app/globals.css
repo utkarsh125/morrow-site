@@ -116,26 +116,47 @@ code, kbd, samp, pre, .font-mono, .font-mono * {
   letter-spacing: 0.02em;
 }
 
-/* Table and prose styling for Gruvbox */
+/* Responsive Table Container */
 .prose {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  max-width: 100%;
 }
 
 .prose table {
-  border-collapse: collapse;
   width: 100%;
+  min-width: 580px;
+  border-collapse: collapse;
+  display: table !important;
 }
 
 .prose th {
   border-bottom: 1px solid var(--color-fd-border);
   color: var(--color-fd-foreground);
-  padding: 0.5rem 0.75rem;
+  padding: 0.6rem 0.85rem;
   text-align: left;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .prose td {
   border-bottom: 1px solid var(--color-fd-muted);
-  padding: 0.5rem 0.75rem;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.875rem;
+  vertical-align: top;
+}
+
+.prose td code {
+  white-space: nowrap;
+}
+
+/* Ensure table container in Fumadocs MDX scrolls horizontally on mobile */
+.prose div:has(> table) {
+  overflow-x: auto !important;
+  max-width: 100% !important;
+  -webkit-overflow-scrolling: touch;
+  margin: 1.25rem 0;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-fd-border);
 }
 
 .prose code {
@@ -146,4 +167,34 @@ code, kbd, samp, pre, .font-mono, .font-mono * {
   color: var(--color-fd-primary);
   font-size: 0.85em;
   font-family: 'JetBrains Mono', monospace !important;
+}
+
+/* Fumadocs responsive header & popover layout fixes */
+@media (min-width: 768px) {
+  #nd-subnav {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  div[data-toc-popover] {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  #nd-subnav {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    height: 3.5rem;
+    background-color: var(--color-fd-background);
+    border-bottom: 1px solid var(--color-fd-border);
+  }
+  div[data-toc-popover] {
+    position: sticky;
+    top: 3.5rem;
+    z-index: 20;
+    background-color: var(--color-fd-background);
+  }
 }
