@@ -1,11 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-:root, :host, .dark {
+:root {
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   --default-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   --default-mono-font-family: 'JetBrains Mono', monospace !important;
 
+  /* Fumadocs Theme Tokens -> Gruvbox Light */
+  --color-fd-background: #fbf1c7;
+  --color-fd-foreground: #3c3836;
+  --color-fd-muted: #f2e5bc;
+  --color-fd-muted-foreground: #7c6f64;
+  --color-fd-popover: #f2e5bc;
+  --color-fd-popover-foreground: #3c3836;
+  --color-fd-card: #f2e5bc;
+  --color-fd-card-foreground: #3c3836;
+  --color-fd-border: #d5c4a1;
+  --color-fd-primary: #b57614;
+  --color-fd-primary-foreground: #fbf1c7;
+  --color-fd-secondary: #ebdbb2;
+  --color-fd-secondary-foreground: #3c3836;
+  --color-fd-accent: #ebdbb2;
+  --color-fd-accent-foreground: #282828;
+  --color-fd-ring: #b57614;
+  --color-fd-overlay: rgba(60, 56, 54, 0.4);
+}
+
+.dark {
   /* Fumadocs Theme Tokens -> Gruvbox Dark */
   --color-fd-background: #1d2021;
   --color-fd-foreground: #ebdbb2;
@@ -26,6 +47,14 @@
   --color-fd-overlay: rgba(29, 32, 33, 0.8);
 }
 
+#nd-sidebar {
+  --color-fd-background: #fbf1c7;
+  --color-fd-muted: #f2e5bc;
+  --color-fd-secondary: #ebdbb2;
+  --color-fd-muted-foreground: #7c6f64;
+  --color-fd-border: #d5c4a1;
+}
+
 .dark #nd-sidebar {
   --color-fd-background: #1d2021;
   --color-fd-muted: #282828;
@@ -39,11 +68,9 @@ html, body, #__next, div, p, span, h1, h2, h3, h4, h5, h6, a, button, input, tex
 }
 
 html, body {
-  background-color: #1d2021;
-  color: #ebdbb2;
-  overflow-x: hidden;
-  selection-background-color: #504945;
-  selection-color: #fbf1c7;
+  background-color: var(--color-fd-background);
+  color: var(--color-fd-foreground);
+  min-height: 100vh;
 }
 
 code, kbd, samp, pre, .font-mono, .font-mono * {
@@ -57,12 +84,16 @@ code, kbd, samp, pre, .font-mono, .font-mono * {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1d2021;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #3c3836;
   border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #3c3836;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -79,9 +110,9 @@ code, kbd, samp, pre, .font-mono, .font-mono * {
   font-weight: 600;
   padding: 0.15rem 0.45rem;
   border-radius: 0.375rem;
-  background: #282828;
-  border: 1px solid #3c3836;
-  color: #ebdbb2;
+  background: var(--color-fd-muted);
+  border: 1px solid var(--color-fd-border);
+  color: var(--color-fd-foreground);
   letter-spacing: 0.02em;
 }
 
@@ -96,23 +127,23 @@ code, kbd, samp, pre, .font-mono, .font-mono * {
 }
 
 .prose th {
-  border-bottom: 1px solid #3c3836;
-  color: #fbf1c7;
+  border-bottom: 1px solid var(--color-fd-border);
+  color: var(--color-fd-foreground);
   padding: 0.5rem 0.75rem;
   text-align: left;
 }
 
 .prose td {
-  border-bottom: 1px solid #282828;
+  border-bottom: 1px solid var(--color-fd-muted);
   padding: 0.5rem 0.75rem;
 }
 
 .prose code {
-  background-color: #282828;
-  border: 1px solid #3c3836;
+  background-color: var(--color-fd-muted);
+  border: 1px solid var(--color-fd-border);
   padding: 0.15rem 0.35rem;
   border-radius: 0.25rem;
-  color: #fabd2f;
+  color: var(--color-fd-primary);
   font-size: 0.85em;
   font-family: 'JetBrains Mono', monospace !important;
 }

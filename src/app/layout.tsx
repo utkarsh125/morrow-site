@@ -69,7 +69,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-[#1d2021] text-[#ebdbb2] antialiased flex flex-col selection:bg-[#504945] selection:text-[#fbf1c7]">
-        <RootProvider theme={{ defaultTheme: 'dark', enabled: false }}>
+        <RootProvider theme={{ defaultTheme: 'dark', attribute: 'class', enableSystem: false }}>
           {children}
         </RootProvider>
       </body>
