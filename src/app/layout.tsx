@@ -25,6 +25,14 @@ export const metadata: Metadata = {
   authors: [{ name: 'Utkarsh Pandey', url: 'https://utkarshpandey.in' }],
   creator: 'Utkarsh Pandey',
   metadataBase: new URL('https://morrow.utkarshpandey.in'),
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   openGraph: {
     title: 'Morrow — Your private AI workspace, always on your machine',
     description:
@@ -61,6 +69,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
@@ -68,7 +77,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
         />
       </head>
-      <body className="min-h-screen bg-[#1d2021] text-[#ebdbb2] antialiased flex flex-col selection:bg-[#504945] selection:text-[#fbf1c7]">
+      <body className="min-h-screen bg-fd-background text-fd-foreground antialiased flex flex-col selection:bg-[#504945] selection:text-[#fbf1c7] transition-colors duration-150">
         <RootProvider theme={{ defaultTheme: 'dark', attribute: 'class', enableSystem: false }}>
           {children}
         </RootProvider>
