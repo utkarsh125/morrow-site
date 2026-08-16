@@ -1,10 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 :root, :host, .dark {
-  --font-inter: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-sans: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-  --default-font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-  --default-mono-font-family: var(--font-mono), 'JetBrains Mono', monospace !important;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  --default-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  --default-mono-font-family: 'JetBrains Mono', monospace !important;
 
   /* Fumadocs Theme Tokens -> Gruvbox Dark */
   --color-fd-background: #1d2021;
@@ -34,22 +34,20 @@
   --color-fd-border: #3c3836;
 }
 
+html, body, #__next, div, p, span, h1, h2, h3, h4, h5, h6, a, button, input, textarea, select, aside, nav, header, footer {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
 html, body {
   background-color: #1d2021;
   color: #ebdbb2;
-  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   overflow-x: hidden;
   selection-background-color: #504945;
   selection-color: #fbf1c7;
 }
 
-/* Apply Inter universally */
-* {
-  font-family: inherit;
-}
-
-code, kbd, samp, pre, .font-mono {
-  font-family: var(--font-mono), 'JetBrains Mono', monospace !important;
+code, kbd, samp, pre, .font-mono, .font-mono * {
+  font-family: 'JetBrains Mono', monospace !important;
 }
 
 /* Custom Scrollbars in Gruvbox */
@@ -76,7 +74,7 @@ code, kbd, samp, pre, .font-mono {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-mono), 'JetBrains Mono', monospace !important;
+  font-family: 'JetBrains Mono', monospace !important;
   font-size: 0.75rem;
   font-weight: 600;
   padding: 0.15rem 0.45rem;
@@ -89,7 +87,7 @@ code, kbd, samp, pre, .font-mono {
 
 /* Table and prose styling for Gruvbox */
 .prose {
-  font-family: var(--font-inter), 'Inter', sans-serif !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 .prose table {
@@ -116,5 +114,5 @@ code, kbd, samp, pre, .font-mono {
   border-radius: 0.25rem;
   color: #fabd2f;
   font-size: 0.85em;
-  font-family: var(--font-mono), 'JetBrains Mono', monospace !important;
+  font-family: 'JetBrains Mono', monospace !important;
 }

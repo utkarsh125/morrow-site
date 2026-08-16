@@ -1,20 +1,7 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
 import { RootProvider } from 'fumadocs-ui/provider/next';
 import 'fumadocs-ui/style.css';
 import './globals.css';
-
-const inter = Inter({
-  variable: '--font-inter',
-  subsets: ['latin'],
-  display: 'swap',
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: '--font-mono',
-  subsets: ['latin'],
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   title: 'Morrow — Your private AI workspace, always on your machine',
@@ -72,8 +59,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} dark scroll-smooth`} suppressHydrationWarning>
-      <body className="min-h-screen bg-[#1d2021] text-[#ebdbb2] antialiased font-sans flex flex-col selection:bg-[#504945] selection:text-[#fbf1c7]">
+    <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        />
+      </head>
+      <body className="min-h-screen bg-[#1d2021] text-[#ebdbb2] antialiased flex flex-col selection:bg-[#504945] selection:text-[#fbf1c7]">
         <RootProvider theme={{ defaultTheme: 'dark', enabled: false }}>
           {children}
         </RootProvider>
