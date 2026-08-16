@@ -5,7 +5,15 @@ import { source } from '@/lib/source';
 
 export default function RootDocsLayout({ children }: { children: ReactNode }) {
   return (
-    <DocsLayout tree={source.pageTree} {...baseOptions}>
+    <DocsLayout
+      tree={source.pageTree}
+      {...baseOptions}
+      nav={{ enabled: false }}
+      sidebar={{
+        collapsible: true,
+        defaultOpenLevel: 1,
+      }}
+    >
       {children}
     </DocsLayout>
   );
