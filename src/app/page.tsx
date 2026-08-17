@@ -1,22 +1,5 @@
 import Link from 'next/link';
-
-function Logo({ size = 40 }: { size?: number }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      viewBox="0 0 256 256"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M 108 0 C 119.046 0 128 8.954 128 20 C 128 8.954 136.954 0 148 0 L 206 0 C 233.614 0 256 22.386 256 50 L 256 108 C 256 119.046 247.046 128 236 128 C 247.046 128 256 136.954 256 148 L 256 206 C 256 233.614 233.614 256 206 256 L 148 256 C 136.954 256 128 247.046 128 236 C 128 247.046 119.046 256 108 256 L 50 256 C 22.386 256 0 233.614 0 206 L 0 148 C 0 136.954 8.954 128 20 128 C 8.954 128 0 119.046 0 108 L 0 50 C 0 22.386 22.386 0 50 0 Z M 128 100 C 112.536 100 100 112.536 100 128 C 100 143.464 112.536 156 128 156 C 143.464 156 156 143.464 156 128 C 156 112.536 143.464 100 128 100 Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
+import Image from 'next/image';
 
 const installMethods = [
   { label: 'Homebrew', cmd: 'brew install utkarsh125/tap/morrow' },
@@ -66,11 +49,25 @@ export default function HomePage() {
           background: 'var(--color-fd-background)',
         }}
       >
-        <span style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 700 }}>
-          <span style={{ color: 'var(--color-fd-primary)', display: 'flex' }}>
-            <Logo size={20} />
-          </span>
-          Morrow
+        <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <Image
+            src="/logo-dark.png"
+            alt="$morrow"
+            height={22}
+            width={110}
+            style={{ height: '22px', width: 'auto' }}
+            className="morrow-logo-dark"
+            priority
+          />
+          <Image
+            src="/logo-light.png"
+            alt="$morrow"
+            height={22}
+            width={110}
+            style={{ display: 'none', height: '22px', width: 'auto' }}
+            className="morrow-logo-light"
+            priority
+          />
           <span
             style={{
               fontSize: '0.6rem',
@@ -130,9 +127,24 @@ export default function HomePage() {
         }}
       >
         {/* Logo */}
-        <span style={{ color: 'var(--color-fd-primary)' }}>
-          <Logo size={52} />
-        </span>
+        <Image
+          src="/logo-dark.png"
+          alt="$morrow"
+          height={40}
+          width={200}
+          style={{ height: '40px', width: 'auto' }}
+          className="morrow-logo-dark"
+          priority
+        />
+        <Image
+          src="/logo-light.png"
+          alt="$morrow"
+          height={40}
+          width={200}
+          style={{ display: 'none', height: '40px', width: 'auto' }}
+          className="morrow-logo-light"
+          priority
+        />
 
         {/* Headline */}
         <div style={{ maxWidth: '600px', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
@@ -325,10 +337,23 @@ export default function HomePage() {
         }}
       >
         <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <span style={{ color: 'var(--color-fd-primary)', display: 'flex' }}>
-            <Logo size={14} />
-          </span>
-          Morrow — built by{' '}
+          <Image
+            src="/logo-dark.png"
+            alt="$morrow"
+            height={16}
+            width={80}
+            style={{ height: '16px', width: 'auto' }}
+            className="morrow-logo-dark"
+          />
+          <Image
+            src="/logo-light.png"
+            alt="$morrow"
+            height={16}
+            width={80}
+            style={{ display: 'none', height: '16px', width: 'auto' }}
+            className="morrow-logo-light"
+          />
+          {' '}— built by{' '}
           <a
             href="https://utkarshpandey.in"
             target="_blank"

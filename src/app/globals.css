@@ -110,3 +110,15 @@ code, kbd, pre, samp {
 }
 
 .prose td code, .prose th code { white-space: nowrap; }
+
+/* ──────────────────────────────────────────────
+   LOGO THEME SWITCHING
+   ────────────────────────────────────────────── */
+
+/* Default: dark theme — show dark logo (white text), hide light logo */
+.morrow-logo-dark  { display: block; }
+.morrow-logo-light { display: none;  }
+
+/* Light theme — show light logo (dark text), hide dark logo */
+:root:not(.dark) .morrow-logo-dark  { display: none;  }
+:root:not(.dark) .morrow-logo-light { display: block; }
