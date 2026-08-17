@@ -200,7 +200,7 @@ export default function HomePage() {
             Utkarsh Pandey
           </a>
         </span>
-        <span>MIT License</span>
+
       </footer>
 
     </main>
