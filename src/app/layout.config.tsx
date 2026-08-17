@@ -1,43 +1,23 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
+import MorrowLogo from '@/components/MorrowLogo';
 
 export const baseOptions: BaseLayoutProps = {
   themeSwitch: { enabled: false },
   nav: {
     title: (
-      <span
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
-        }}
-      >
-        {/* Dark-mode logo (white text) */}
-        <img
-          src="/logo-dark.png"
-          alt="$morrow"
-          height={22}
-          style={{ display: 'block', height: '22px', width: 'auto' }}
-          className="morrow-logo-dark"
-        />
-        {/* Light-mode logo (dark text) */}
-        <img
-          src="/logo-light.png"
-          alt="$morrow"
-          height={22}
-          style={{ display: 'none', height: '22px', width: 'auto' }}
-          className="morrow-logo-light"
-        />
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+        <MorrowLogo iconSize={18} fontSize="0.9375rem" fontWeight={600} />
         <span
           style={{
-            fontSize: '0.625rem',
+            fontSize: '0.5625rem',
             fontFamily: "'JetBrains Mono', monospace",
-            fontWeight: 600,
-            padding: '0.1rem 0.35rem',
-            borderRadius: '0.25rem',
+            fontWeight: 700,
+            padding: '0.12rem 0.32rem',
+            borderRadius: '0.2rem',
             background: 'var(--color-fd-muted)',
             color: 'var(--color-fd-primary)',
             border: '1px solid var(--color-fd-border)',
-            letterSpacing: '0.04em',
+            letterSpacing: '0.07em',
             textTransform: 'uppercase',
           }}
         >

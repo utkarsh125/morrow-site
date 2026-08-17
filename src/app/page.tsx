@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import MorrowLogo from '@/components/MorrowLogo';
 import DitherHero from '@/components/DitherHero';
 import CopyButton from '@/components/CopyButton';
 
@@ -61,24 +61,7 @@ export default function HomePage() {
       {/* ── NAV ───────────────────────────────────── */}
       <nav className="lp-nav">
         <span className="lp-nav-brand">
-          <Image
-            src="/logo-dark.png"
-            alt="$morrow"
-            height={20}
-            width={100}
-            style={{ height: '20px', width: 'auto' }}
-            className="morrow-logo-dark"
-            priority
-          />
-          <Image
-            src="/logo-light.png"
-            alt="$morrow"
-            height={20}
-            width={100}
-            style={{ height: '20px', width: 'auto' }}
-            className="morrow-logo-light"
-            priority
-          />
+          <MorrowLogo iconSize={18} fontSize="0.9375rem" fontWeight={600} />
           <span className="lp-version">v0.1.0</span>
         </span>
         <div className="lp-nav-links">
@@ -206,22 +189,7 @@ export default function HomePage() {
       {/* ── FOOTER ────────────────────────────────── */}
       <footer className="lp-footer">
         <span className="lp-footer-brand">
-          <Image
-            src="/logo-dark.png"
-            alt="$morrow"
-            height={14}
-            width={70}
-            style={{ height: '14px', width: 'auto' }}
-            className="morrow-logo-dark"
-          />
-          <Image
-            src="/logo-light.png"
-            alt="$morrow"
-            height={14}
-            width={70}
-            style={{ height: '14px', width: 'auto' }}
-            className="morrow-logo-light"
-          />
+          <MorrowLogo iconSize={14} fontSize="0.8125rem" fontWeight={600} />
           <span> — built by </span>
           <a
             href="https://utkarshpandey.in"
