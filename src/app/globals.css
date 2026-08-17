@@ -110,3 +110,455 @@ code, kbd, pre, samp {
 }
 
 .prose td code, .prose th code { white-space: nowrap; }
+
+/* ──────────────────────────────────────────────
+   LOGO THEME SWITCHING
+   ────────────────────────────────────────────── */
+
+/* Default: dark theme — show dark logo (white text), hide light logo */
+.morrow-logo-dark  { display: block; }
+.morrow-logo-light { display: none;  }
+
+/* Light theme — show light logo (dark text), hide dark logo */
+:root:not(.dark) .morrow-logo-dark  { display: none;  }
+:root:not(.dark) .morrow-logo-light { display: block; }
+
+/* ══════════════════════════════════════════════════════════════
+   LANDING PAGE  (lp- prefix — scoped, does not affect Fumadocs)
+   ══════════════════════════════════════════════════════════════ */
+
+.lp-root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-fd-background);
+  color: var(--color-fd-foreground);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+/* ── NAV ─────────────────────────────────────────────── */
+
+.lp-nav {
+  height: 3.5rem;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--color-fd-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--color-fd-background);
+}
+
+.lp-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lp-version {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.12rem 0.32rem;
+  border-radius: 0.2rem;
+  background: var(--color-fd-muted);
+  color: var(--color-fd-primary);
+  border: 1px solid var(--color-fd-border);
+}
+
+.lp-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.lp-nav-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-fd-muted-foreground);
+  text-decoration: none;
+  transition: color 0.12s ease;
+}
+
+.lp-nav-link:hover {
+  color: var(--color-fd-foreground);
+}
+
+/* ── HERO ────────────────────────────────────────────── */
+
+.lp-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: calc(100dvh - 3.5rem);
+  display: flex;
+  align-items: center;
+  padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 5vw, 4rem);
+}
+
+.lp-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.lp-hero-prompt {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8125rem;
+  color: var(--color-fd-primary);
+  margin: 0;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+.lp-prompt-dollar {
+  opacity: 0.45;
+}
+
+.lp-cursor {
+  display: inline-block;
+  animation: lp-blink 1.05s step-end infinite;
+  opacity: 0.75;
+  margin-left: 2px;
+}
+
+@keyframes lp-blink {
+  0%, 100% { opacity: 0.75; }
+  50%       { opacity: 0;    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-cursor { animation: none; opacity: 0.75; }
+}
+
+.lp-hero-h1 {
+  font-size: clamp(2.375rem, 6vw, 4.25rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.028em;
+  color: var(--color-fd-foreground);
+  margin: 0;
+}
+
+.lp-hero-h1-soft {
+  color: var(--color-fd-muted-foreground);
+  font-weight: 400;
+}
+
+.lp-hero-sub {
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  color: var(--color-fd-muted-foreground);
+  line-height: 1.75;
+  margin: 0;
+  max-width: 520px;
+}
+
+.lp-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding-top: 0.25rem;
+}
+
+.lp-action-primary {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-fd-foreground);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--color-fd-primary);
+  padding-bottom: 1px;
+  transition: color 0.12s ease;
+}
+
+.lp-action-primary:hover {
+  color: var(--color-fd-primary);
+}
+
+.lp-action-secondary {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-fd-muted-foreground);
+  text-decoration: none;
+  transition: color 0.12s ease;
+}
+
+.lp-action-secondary:hover {
+  color: var(--color-fd-foreground);
+}
+
+/* ── SECTIONS ────────────────────────────────────────── */
+
+.lp-section {
+  border-top: 1px solid var(--color-fd-border);
+  padding: clamp(3rem, 7vw, 5rem) clamp(1.5rem, 5vw, 4rem);
+}
+
+.lp-section-inner {
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+
+.lp-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-fd-primary);
+  margin: 0;
+}
+
+/* ── INSTALL ─────────────────────────────────────────── */
+
+.lp-install-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.lp-install-row {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid var(--color-fd-border);
+}
+
+.lp-install-row:first-child {
+  border-top: 1px solid var(--color-fd-border);
+}
+
+.lp-dollar {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-fd-primary);
+  opacity: 0.55;
+  user-select: none;
+}
+
+.lp-install-cmd {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(0.6875rem, 1.6vw, 0.8125rem);
+  color: var(--color-fd-foreground);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── COPY BUTTON ─────────────────────────────────────── */
+
+.lp-copy-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  background: transparent;
+  border: 1px solid var(--color-fd-border);
+  border-radius: 0.2rem;
+  color: var(--color-fd-muted-foreground);
+  cursor: pointer;
+  transition: color 0.12s ease, border-color 0.12s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+
+.lp-copy-btn:hover {
+  color: var(--color-fd-foreground);
+  border-color: var(--color-fd-muted-foreground);
+}
+
+.lp-copy-btn[data-copied='true'] {
+  color: var(--color-fd-primary);
+  border-color: var(--color-fd-primary);
+}
+
+/* ── CAPABILITIES ────────────────────────────────────── */
+
+.lp-caps-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.lp-cap-row {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 2.5rem;
+  padding: 1.875rem 0;
+  border-bottom: 1px solid var(--color-fd-border);
+  align-items: start;
+}
+
+.lp-cap-row:first-child {
+  border-top: 1px solid var(--color-fd-border);
+}
+
+.lp-cap-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--color-fd-primary);
+  padding-top: 0.2rem;
+  opacity: 0.85;
+}
+
+.lp-cap-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-fd-foreground);
+  margin: 0 0 0.4rem 0;
+  line-height: 1.4;
+}
+
+.lp-cap-desc {
+  font-size: 0.875rem;
+  color: var(--color-fd-muted-foreground);
+  line-height: 1.72;
+  margin: 0;
+}
+
+/* ── THEMES ──────────────────────────────────────────── */
+
+.lp-themes-hint {
+  font-size: 0.875rem;
+  color: var(--color-fd-muted-foreground);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.lp-kbd {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6875rem;
+  padding: 0.1rem 0.32rem;
+  background: var(--color-fd-muted);
+  border: 1px solid var(--color-fd-border);
+  border-radius: 0.2rem;
+  color: var(--color-fd-foreground);
+}
+
+.lp-themes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(152px, 1fr));
+  gap: 0.625rem;
+}
+
+.lp-theme-card {
+  border-radius: 0.375rem;
+  padding: 0.875rem 0.875rem 0.625rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  margin: 0;
+  transition: transform 0.14s ease;
+}
+
+.lp-theme-card:hover {
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-theme-card:hover { transform: none; }
+}
+
+.lp-swatches {
+  display: flex;
+  gap: 3px;
+}
+
+.lp-swatch {
+  width: 13px;
+  height: 13px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.lp-theme-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  opacity: 0.72;
+  display: block;
+}
+
+/* ── FOOTER ──────────────────────────────────────────── */
+
+.lp-footer {
+  border-top: 1px solid var(--color-fd-border);
+  padding: 1.25rem clamp(1.5rem, 5vw, 4rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--color-fd-muted-foreground);
+  margin-top: auto;
+}
+
+.lp-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.lp-footer-link {
+  color: var(--color-fd-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.lp-footer-link:hover {
+  text-decoration: underline;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .lp-cap-row {
+    grid-template-columns: 1fr;
+    gap: 0.375rem;
+  }
+
+  .lp-install-row {
+    grid-template-columns: 1rem minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    row-gap: 0.5rem;
+  }
+
+  .lp-copy-btn {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .lp-hero-sub br {
+    display: none;
+  }
+
+  .lp-themes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+}
+
+@media (max-width: 380px) {
+  .lp-themes-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
